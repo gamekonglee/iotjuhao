@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.ams:alicloud-android-third-push:3.0.5@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bda16bdb63b9e94268ac2edb6a7f4abc/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bda16bdb63b9e94268ac2edb6a7f4abc/jars/classes.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bda16bdb63b9e94268ac2edb6a7f4abc/jars/libs/mipush-2.2.22.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bda16bdb63b9e94268ac2edb6a7f4abc/jars/libs/huawei-push-1.1.1.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/bda16bdb63b9e94268ac2edb6a7f4abc/jars/libs/third-push-support-release.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/adf3c11d7d4fbf460d0601a5d64c2194/jars/libs/mipush-2.2.22.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/adf3c11d7d4fbf460d0601a5d64c2194/jars/libs/huawei-push-1.1.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/adf3c11d7d4fbf460d0601a5d64c2194/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/adf3c11d7d4fbf460d0601a5d64c2194/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/adf3c11d7d4fbf460d0601a5d64c2194/jars/libs/third-push-support-release.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

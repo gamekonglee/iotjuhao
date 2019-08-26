@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:imagepipeline-okhttp3:0.11.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cd9727a0e6bc9c61634558e70ff926da/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cd9727a0e6bc9c61634558e70ff926da/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/81e3f8979e7d20dfe73c7404b0d77465/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/81e3f8979e7d20dfe73c7404b0d77465/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/imagepipeline-okhttp3/0.11.0/26758b7798eab5ecc3989ff4002e15044fd7ed3/imagepipeline-okhttp3-0.11.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/modules-2/files-2.1/com.facebook.fresco/imagepipeline-okhttp3/0.11.0/26758b7798eab5ecc3989ff4002e15044fd7ed3/imagepipeline-okhttp3-0.11.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

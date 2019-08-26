@@ -302,8 +302,13 @@ public class ItApplicationFragment extends BaseFragment implements EndOfListView
         btn_add_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), IotSceneAddActivity.class);
-                startActivity(intent);
+//                Intent intent=new Intent(getActivity(), IotSceneAddActivity.class);
+//                startActivity(intent);
+                String code = "link://router/scene";
+                Bundle bundle = new Bundle();
+                bundle.putString("sceneType","ilop"); // 传入插件参数，没有参数则不需要这一行
+                Router.getInstance().toUrlForResult(getActivity(), code, 1, bundle);
+
 
             }
         });

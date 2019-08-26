@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.alink.linksdk:coap-sdk:1.4.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27b7f89332e1aadf636149fce594cd7d/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27b7f89332e1aadf636149fce594cd7d/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/b67abdf145d7abe57509204fa0212a2f/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/b67abdf145d7abe57509204fa0212a2f/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

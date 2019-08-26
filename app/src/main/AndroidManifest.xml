@@ -232,6 +232,9 @@
         <activity android:name=".scene.IotSceneActionAddActivity"/>
         <activity android:name=".scene.IotSceneAddActivity"/>
         <activity android:name=".scene.IotSceneDeviceAddActivity"/>
+        <activity android:name=".ui.DeviceShareActivity"/>
+        <activity android:name=".ui.DeviceShareAddActivity"/>
+        <activity android:name=".ui.DeviceShareAddUserActivity"/>
         <!-- API client.end -->
 
 

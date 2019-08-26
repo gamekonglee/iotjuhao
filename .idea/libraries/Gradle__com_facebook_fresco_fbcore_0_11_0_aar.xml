@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:fbcore:0.11.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d49620b280439c40b4dd95fd72e739a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d49620b280439c40b4dd95fd72e739a/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/1c1b5966cc4507c748d8d547e4c9812a/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/1c1b5966cc4507c748d8d547e4c9812a/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/fbcore/0.11.0/f19c2ff25115d8e50261cad12377bc985e06aa9b/fbcore-0.11.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/modules-2/files-2.1/com.facebook.fresco/fbcore/0.11.0/f19c2ff25115d8e50261cad12377bc985e06aa9b/fbcore-0.11.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

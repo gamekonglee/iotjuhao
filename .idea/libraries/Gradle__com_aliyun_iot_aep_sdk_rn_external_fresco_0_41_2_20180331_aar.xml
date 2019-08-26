@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.iot.aep.sdk:rn-external-fresco:0.41.2.20180331@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e6487112976ca813b9a2979f4977fa5e/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f37bb2764acdb42edf077b0a4b7efb74/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e6487112976ca813b9a2979f4977fa5e/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e6487112976ca813b9a2979f4977fa5e/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f37bb2764acdb42edf077b0a4b7efb74/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f37bb2764acdb42edf077b0a4b7efb74/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

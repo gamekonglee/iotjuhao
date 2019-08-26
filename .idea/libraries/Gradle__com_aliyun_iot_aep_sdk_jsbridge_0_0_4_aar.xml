@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.iot.aep.sdk:jsbridge:0.0.4@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbaac17fe4d37b2a7fab407a6d67ecb5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/dbaac17fe4d37b2a7fab407a6d67ecb5/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/6d89bbafe0c669e9055c5b9c11d14707/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/6d89bbafe0c669e9055c5b9c11d14707/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

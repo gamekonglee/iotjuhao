@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:imagepipeline:0.11.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4da441f25a6e8a46bcf00eefabf5acfd/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4da441f25a6e8a46bcf00eefabf5acfd/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/19307be0ef63e8a2aa434f82f3b12613/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/19307be0ef63e8a2aa434f82f3b12613/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/imagepipeline/0.11.0/e213b4554b6c5a9a64dad17a749bd8b5c6d6be22/imagepipeline-0.11.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/modules-2/files-2.1/com.facebook.fresco/imagepipeline/0.11.0/e213b4554b6c5a9a64dad17a749bd8b5c6d6be22/imagepipeline-0.11.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

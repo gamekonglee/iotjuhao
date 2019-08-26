@@ -21,6 +21,7 @@ import com.BaseFragment;
 import com.aliyun.iot.aep.component.router.Router;
 import com.juhao.iot.R;
 import com.juhao.iot.ui.AboutActivity;
+import com.juhao.iot.ui.DeviceShareActivity;
 import com.juhao.iot.ui.NoticeActivity;
 import com.juhao.iot.ui.SettingActivity;
 
@@ -95,6 +96,9 @@ public class ItMineMainFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.tv_notice:
                 startActivity(new Intent(getActivity(), NoticeActivity.class));
+                break;
+            case R.id.tv_share:
+                startActivity(new Intent(getActivity(), DeviceShareActivity.class));
                 break;
         }
 

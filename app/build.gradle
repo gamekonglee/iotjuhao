@@ -90,6 +90,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.multidex:multidex:2.0.0'
+
     implementation 'com.aliyun.iot.aep.sdk:account-oa:0.0.3.9'
     implementation 'com.aliyun.ams:alicloud-android-utdid:1.1.5.4'
     implementation 'com.aliyun.ams:alicloud-android-ut:5.1.0'

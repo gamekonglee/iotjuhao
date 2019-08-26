@@ -6,6 +6,7 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -155,7 +156,37 @@ public class IotSceneDeviceAddActivity extends BaseActivity {
         };
         lv_devices.setAdapter(adapter);
         listByAccount();
+        lv_devices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Map<String,Object> map=new HashMap<>();
+                map.put("iotId",accountDevDTOS.get(i).getIotId()+"");
+                IoTRequestBuilder builder=new IoTRequestBuilder()
+//                        .setPath("/thing/tsl/get")
+                        .setPath("/thing/events/get")
+                        .setApiVersion("1.0.2")
+                        .setAuthType("iotAuth")
+                        .setParams(map);
+                IoTRequest request=builder.build();
+                IoTAPIClient ioTAPIClient=new IoTAPIClientFactory().getClient();
+                ioTAPIClient.send(request, new IoTCallback() {
+                    @Override
+                    public void onFailure(IoTRequest ioTRequest, Exception e) {
 
+                    }
+
+                    @Override
+                    public void onResponse(IoTRequest ioTRequest, IoTResponse response) {
+                        final int code = response.getCode();
+                        final String msg = response.getMessage();
+                        Object data = response.getData();
+                        if (null != data) {
+                            LogUtils.logE("tsl/get",data.toString());
+                        }
+                    }
+                });
+            }
+        });
     }
     private void listByAccount(){
         accountDevDTOS = new ArrayList<>();
