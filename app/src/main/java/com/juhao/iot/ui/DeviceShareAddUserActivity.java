@@ -47,7 +47,7 @@ public class DeviceShareAddUserActivity extends BaseActivity {
             public void onClick(View view) {
                 String phone=et_phone.getText().toString();
                 if(TextUtils.isEmpty(phone)){
-                    MyToast.show(DeviceShareAddUserActivity.this,"请输入用户账号或邮箱");
+                    MyToast.show(DeviceShareAddUserActivity.this,getString(R.string.str_enter_account));
                     return;
                 }
                 List<String > list=new ArrayList<>();
@@ -82,7 +82,7 @@ public class DeviceShareAddUserActivity extends BaseActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    MyToast.show(DeviceShareAddUserActivity.this,"分享成功");
+                                    MyToast.show(DeviceShareAddUserActivity.this,getString(R.string.str_share_success));
                                     finish();
                                 }
                             });

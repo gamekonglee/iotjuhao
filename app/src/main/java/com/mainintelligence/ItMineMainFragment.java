@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.BaseFragment;
 import com.aliyun.iot.aep.component.router.Router;
+import com.aliyun.iot.aep.sdk.login.LoginBusiness;
+import com.aliyun.iot.aep.sdk.login.data.UserInfo;
 import com.juhao.iot.R;
 import com.juhao.iot.ui.AboutActivity;
 import com.juhao.iot.ui.DeviceShareActivity;
@@ -31,6 +34,9 @@ import com.juhao.iot.ui.SettingActivity;
  */
 
 public class ItMineMainFragment extends BaseFragment implements View.OnClickListener {
+
+    private TextView tv_name;
+
     @Override
     protected void initController() {
 
@@ -51,6 +57,7 @@ public class ItMineMainFragment extends BaseFragment implements View.OnClickList
         TextView tv_setting=getView().findViewById(R.id.tv_setting);
         TextView tv_about=getView().findViewById(R.id.tv_about);
         View iv_scale=getView().findViewById(R.id.iv_scale);
+        tv_name = getView().findViewById(R.id.tv_name);
         tv_componet.setOnClickListener(this);
         tv_notice.setOnClickListener(this);
         tv_share.setOnClickListener(this);
@@ -59,6 +66,18 @@ public class ItMineMainFragment extends BaseFragment implements View.OnClickList
         tv_setting.setOnClickListener(this);
         tv_about.setOnClickListener(this);
         iv_scale.setOnClickListener(this);
+        UserInfo userInfo=LoginBusiness.getUserInfo();
+        if(userInfo!=null){
+            String phone=userInfo.userPhone;
+            if(TextUtils.isEmpty(phone)){
+                phone=userInfo.userEmail;
+            }
+            if(phone.length()>10){
+                phone=phone.substring(0,3)+"******"+phone.substring(phone.length()-3);
+            }
+            if(phone!=null)
+            tv_name.setText(phone);
+        }
     }
 
     @Override

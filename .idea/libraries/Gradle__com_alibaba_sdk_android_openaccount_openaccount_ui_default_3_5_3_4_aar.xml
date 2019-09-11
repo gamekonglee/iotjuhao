@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.alibaba.sdk.android.openaccount:openaccount-ui-default:3.5.3.4@aar">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/df6981f6fd8be4ba4b29b1ea01377dfa/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/5c3762c7ca75a6fbfe861dfc93a997cf/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/df6981f6fd8be4ba4b29b1ea01377dfa/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/df6981f6fd8be4ba4b29b1ea01377dfa/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/5c3762c7ca75a6fbfe861dfc93a997cf/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/5c3762c7ca75a6fbfe861dfc93a997cf/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

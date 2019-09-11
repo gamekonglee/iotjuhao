@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gaga="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,7 +34,7 @@
             </RelativeLayout>
             <com.view.TextViewPlus
                 android:id="@+id/tv_home"
-                android:text="我的家"
+                android:text="@string/str_my_home"
                 android:textColor="#333333"
                 android:textSize="16sp"
                 android:drawableRight="@mipmap/home_fh"
@@ -66,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:text="晴"
+                android:text="@string/str_qing"
                 android:textColor="#333333"
                 android:textSize="18sp"
                 android:layout_gravity="center_vertical"
@@ -87,14 +94,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_temp_outside"
-                    android:text="加载中"
+                    android:text="@string/str_loading"
                     android:textSize="20sp"
                     android:textColor="#999999"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="室内温度"
+                    android:text="@string/str_room_temp"
                     android:textColor="#999999"
                     android:textSize="12sp"
                     android:layout_height="wrap_content" />
@@ -108,14 +115,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_pm_outside"
-                    android:text="加载中"
+                    android:text="@string/str_loading"
                     android:textSize="20sp"
                     android:textColor="#999999"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="室外PM2.5"
+                    android:text="PM2.5"
                     android:textColor="#999999"
                     android:textSize="12sp"
                     android:layout_height="wrap_content" />
@@ -128,14 +135,14 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_air_outside"
-                    android:text="优"
+                    android:text="@string/str_you"
                     android:textSize="20sp"
                     android:textColor="#999999"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="室外空气"
+                    android:text="@string/str_outdoor_temp"
                     android:textColor="#999999"
                     android:textSize="12sp"
                     android:layout_height="wrap_content" />
@@ -164,7 +171,7 @@
                         android:layout_width="111.5dp"
                         android:layout_height="65dp" />
                     <TextView
-                        android:text="回家"
+                        android:text="@string/str_gohome"
                         android:textColor="#ffffff"
                         android:textSize="11sp"
                         android:layout_centerInParent="true"
@@ -185,7 +192,7 @@
                         android:layout_width="111.5dp"
                         android:layout_height="65dp" />
                     <TextView
-                        android:text="离家"
+                        android:text="@string/str_go_out"
                         android:textColor="#ffffff"
                         android:textSize="11sp"
                         android:layout_centerInParent="true"
@@ -206,7 +213,7 @@
                         android:layout_width="111.5dp"
                         android:layout_height="65dp" />
                     <TextView
-                        android:text="起床"
+                        android:text="@string/str_get_up"
                         android:textColor="#ffffff"
                         android:textSize="11sp"
                         android:layout_centerInParent="true"
@@ -311,3 +318,4 @@
         </ScrollView>
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

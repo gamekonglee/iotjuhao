@@ -35,14 +35,22 @@ import com.alibaba.sdk.android.openaccount.model.OpenAccountSession;
 import com.alibaba.sdk.android.openaccount.ui.OpenAccountUIService;
 import com.alibaba.sdk.android.openaccount.ui.impl.OpenAccountUIServiceImpl;
 import com.alibaba.sdk.android.openaccount.ui.ui.LoginActivity;
+import com.aliyun.alink.business.devicecenter.extbone.BoneAddDeviceBiz;
+import com.aliyun.alink.business.devicecenter.extbone.BoneHotspotHelper;
+import com.aliyun.alink.business.devicecenter.extbone.BoneLocalDeviceMgr;
 import com.aliyun.alink.linksdk.channel.core.base.AError;
 import com.aliyun.alink.linksdk.channel.mobile.api.IMobileConnectListener;
 import com.aliyun.alink.linksdk.channel.mobile.api.IMobileRequestListener;
 import com.aliyun.alink.linksdk.channel.mobile.api.MobileChannel;
 import com.aliyun.alink.linksdk.channel.mobile.api.MobileConnectConfig;
 import com.aliyun.alink.linksdk.channel.mobile.api.MobileConnectState;
+import com.aliyun.alink.linksdk.tmp.extbone.BoneSubDeviceService;
+import com.aliyun.alink.linksdk.tmp.extbone.BoneThing;
+import com.aliyun.alink.linksdk.tmp.extbone.BoneThingDiscovery;
+import com.aliyun.alink.sdk.jsbridge.BonePluginRegistry;
 import com.aliyun.iot.aep.component.router.Router;
 import com.aliyun.iot.aep.component.scan.ScanManager;
+import com.aliyun.iot.aep.sdk.connectchannel.BoneChannel;
 import com.aliyun.iot.aep.sdk.credential.IotCredentialManager.IoTCredentialListener;
 import com.aliyun.iot.aep.sdk.credential.IotCredentialManager.IoTCredentialManage;
 import com.aliyun.iot.aep.sdk.credential.IotCredentialManager.IoTCredentialManageError;
@@ -54,6 +62,7 @@ import com.aliyun.iot.ilop.demo.DemoApplication;
 import com.aliyun.iot.ilop.demo.page.scan.AddDeviceScanPlugin;
 import com.aliyun.iot.ilop.demo.utils.FloatWindowHelper;
 import com.aliyun.iot.aep.sdk.login.LoginBusiness;
+import com.juhao.iot.IssApplication;
 import com.juhao.iot.MyLoginActivity;
 import com.juhao.iot.R;
 import com.juhao.iot.ui.ItHomeMainFragment;
@@ -74,7 +83,7 @@ public class MainActivity extends FragmentActivity {
     private MyFragmentTabLayout fragmentTabHost;
 
     private Class fragmentClass[] = {ItHomeMainFragment.class, ItApplicationFragment.class, ItMineMainFragment.class};
-    private String textViewArray[] = {"首页", "智能", "个人中心"};
+    private String textViewArray[] = {DemoApplication.getContext().getString(R.string.str_home), DemoApplication.getContext().getString(R.string.str_Intelligent),DemoApplication.getContext(). getString(R.string.str_me)};
     private Integer drawables[] = {R.drawable.top_bot_bar_wise, R.drawable.product_bot_bar_intelligent, R.drawable.mine_bot_bar_wise};
     private LinearLayout ll_home;
 
@@ -115,7 +124,7 @@ public class MainActivity extends FragmentActivity {
             LoginBusiness.refreshSession(true, new IRefreshSessionCallback() {
                 @Override
                 public void onRefreshSuccess() {
-                    Log.i(TAG,"刷新Session成功");
+//                    Log.i(TAG,"刷新Session成功");
                     String sessionid=LoginBusiness.getSessionId();
                     UserInfo info=LoginBusiness.getUserInfo();
                 }
@@ -132,6 +141,14 @@ public class MainActivity extends FragmentActivity {
         }else {
             initLoginStatus();
         }
+        BonePluginRegistry.register("BoneAddDeviceBiz", BoneAddDeviceBiz.class);
+        BonePluginRegistry.register("BoneLocalDeviceMgr", BoneLocalDeviceMgr.class);
+        BonePluginRegistry.register("BoneHotspotHelper", BoneHotspotHelper.class);
+        BonePluginRegistry.register("BoneChannel", BoneChannel.class);
+        BonePluginRegistry.register("BoneThing", BoneThing.class);
+        BonePluginRegistry.register("BoneSubDeviceService", BoneSubDeviceService.class);
+        BonePluginRegistry.register("BoneThingDiscovery", BoneThingDiscovery.class);
+
 //        MobileChannel.getInstance().startConnect(DemoApplication.getContext(), config, new IMobileConnectListener() {
 //            @Override
 //            public void onConnectStateChange(MobileConnectState state) {
@@ -192,7 +209,7 @@ public class MainActivity extends FragmentActivity {
             if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
                 if ((System.currentTimeMillis() - exitTime) > 2000) {
                     exitTime = System.currentTimeMillis();
-                    MyToast.show(this,"再按一次退出系统");
+                    MyToast.show(this,getString(R.string.str_exit_toast));
                 } else {
                     finish();
                 }
@@ -278,7 +295,7 @@ public class MainActivity extends FragmentActivity {
         String username= MyShare.get(this).getString(Constance.username);
         String pwd=MyShare.get(this).getString(Constance.pwd);
         if(TextUtils.isEmpty(username)||TextUtils.isEmpty(pwd)){
-            MyToast.show(this,"登录状态失效");
+            MyToast.show(this,getString(R.string.str_login_timeout));
             startActivity(new Intent(this, LoginActivity.class));
             finish();
             return;
@@ -481,7 +498,7 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                MyToast.show(MainActivity.this,"登录状态失效");
+                MyToast.show(MainActivity.this,getString(R.string.str_login_timeout));
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 finish();
                 return;

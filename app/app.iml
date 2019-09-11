@@ -149,6 +149,7 @@
     <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.alink.linksdk:android_alink_id2:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.iot.aep.sdk:router:0.0.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.yanzhenjie:permission:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.alibaba.sdk.android.openaccount:openaccount-ui-default:3.5.3.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.alink.linksdk:ilop-devicecenter-ext-boneplugin:1.5.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
@@ -163,6 +164,7 @@
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.11.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.iot.aep.sdk:account-oa:0.0.3.9@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.yanzhenjie.alertdialog:alertdialog:1.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.iot.aep.component:scan:0.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.aliyun.iot.aep.sdk:abus:0.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp-urlconnection:3.11.0@jar" level="project" />

@@ -145,9 +145,9 @@ public class ItApplicationFragment extends BaseFragment implements EndOfListView
                                     @Override
                                     public void run() {
                                         if(code!=200){
-                                            Toast.makeText(getActivity(), "执行失败", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), getString(R.string.str_excute_failed), Toast.LENGTH_SHORT).show();
                                         }else {
-                                            Toast.makeText(getActivity(), "执行成功", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), getString(R.string.str_excute_success), Toast.LENGTH_SHORT).show();
                                             page=1;
                                             scenes=new ArrayList<>();
                                             getSceneList();
@@ -238,10 +238,10 @@ public class ItApplicationFragment extends BaseFragment implements EndOfListView
                                         @Override
                                         public void run() {
                                             if(ioTResponse.getCode()!=200){
-                                                MyToast.show(getActivity(),"设置失败");
+                                                MyToast.show(getActivity(),getString(R.string.str_setting_failed));
                                                 return;
                                             }else {
-                                                MyToast.show(getActivity(),"设置成功");
+                                                MyToast.show(getActivity(),getString(R.string.str_setting_success));
                                             }
                                             page=1;
                                             scenes=new ArrayList<>();
@@ -333,6 +333,7 @@ public class ItApplicationFragment extends BaseFragment implements EndOfListView
     @Override
     public void onResume() {
         super.onResume();
+        page=1;
         getSceneList();
     }
 
@@ -452,7 +453,7 @@ public class ItApplicationFragment extends BaseFragment implements EndOfListView
                 Object data = response.getData();
                 if (null != data) {
                     if(data instanceof JSONArray){
-                        List<JSONObject >mDeviceList = parseDeviceListFromSever((JSONArray) data);
+//                        List<JSONObject >mDeviceList = parseDeviceListFromSever((JSONArray) data);
                         Intent intent=new Intent(getActivity(), AddDeviceActivity.class);
                         intent.putExtra("bundle",mBundle);
                         startActivity(intent);

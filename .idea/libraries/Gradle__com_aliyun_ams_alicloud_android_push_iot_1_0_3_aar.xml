@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.ams:alicloud-android-push-iot:1.0.3@aar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/df2dfae3c815956f5f8097e65a66c20b/jars/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/df2dfae3c815956f5f8097e65a66c20b/res" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/a2d01865fab750d04a3ac561a39d2334/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/a2d01865fab750d04a3ac561a39d2334/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -66,6 +66,7 @@ import com.net.ApiClient;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.util.Constance;
 import com.util.LogUtils;
+import com.util.MyShare;
 import com.view.MyToast;
 import com.zhy.http.okhttp.callback.Callback;
 
@@ -124,7 +125,6 @@ public class AddDeviceActivity extends AActivity {
         mSupportDeviceLL = (LinearLayout)findViewById(R.id.support_device_ll);
         lv_cate_a = findViewById(R.id.lv_cate_a);
         gv_cate_b = findViewById(R.id.lv_cate_b);
-//        current = 0;
         adapterCategoryA = new QuickAdapter<DeviceCategoryBean>(AddDeviceActivity.this,R.layout.item_device_cate_1) {
             @Override
             protected void convert(BaseAdapterHelper helper, DeviceCategoryBean item) {
@@ -171,8 +171,9 @@ public class AddDeviceActivity extends AActivity {
 //                    if(devicesDataBeans.get(x).getCategoryId()==deviceCategoryBeansB.get(i).getCate_id()){
 //                    LogUtils.logE("getCate_id,",""+devicesDataBeans.get(x).getName());
 //                    }
-                    if(devicesDataBeans.get(x).getCategoryId()==deviceCategoryBeansB.get(i).getCate_id()){
-                        if(devicesDataBeans.get(x).getName().equals("智能家居灯")&&deviceCategoryBeansB.get(i).getName().equals("照明")){
+//                    if(devicesDataBeans.get(x).getCategoryId()==deviceCategoryBeansB.get(i).getCate_id()){
+                        if(devicesDataBeans.get(x).getName().equals("智能家居灯")&&deviceCategoryBeansB.get(i).getName().equals("照明")||
+                                devicesDataBeans.get(x).getName().equals("摄像头")&&deviceCategoryBeansB.get(i).getName().equals("摄像头")){
                             hasDevice=true;
                             String code = CODE;
                             Bundle bundle = new Bundle();
@@ -183,8 +184,16 @@ public class AddDeviceActivity extends AActivity {
                             Router.getInstance().toUrlForResult(AddDeviceActivity.this, code, 1, bundle);
                             break;
                         }
-
-                    }
+//                    }
+                }
+                LogUtils.logE("name",deviceCategoryBeansB.get(i).getName());
+                if(deviceCategoryBeansB.get(i).getName().contains("照明")&&deviceCategoryBeansB.get(i).getName().contains("蓝牙")){
+                    hasDevice=true;
+                    MyToast.show(AddDeviceActivity.this,"添加成功");
+                    int BLUETOOTH_LIGHT_COUNT=MyShare.get(AddDeviceActivity.this).getInt(Constance.BLUETOOTH_LIGHT_COUNT);
+                    BLUETOOTH_LIGHT_COUNT++;
+                    MyShare.get(AddDeviceActivity.this).putInt(Constance.BLUETOOTH_LIGHT_COUNT,BLUETOOTH_LIGHT_COUNT);
+                    finish();
                 }
                 if(!hasDevice){
                     MyToast.show(AddDeviceActivity.this,"没有相关的可用设备");
@@ -353,7 +362,7 @@ public class AddDeviceActivity extends AActivity {
 //            iv_device_icon.setImageResource(R.drawable.add_device);
             final String name=mSupportDeviceListItems.get(i).getName();
             ImageLoader.getInstance().displayImage(mSupportDeviceListItems.get(i).getImage(),iv_device_icon);
-//            if(name.contains("开关")){
+//            if(name.contains(getString(R.string.str_kaiguan))){
 //                iv_device_icon.setImageResource(R.mipmap.home_kg);
 //            }else if(name.contains("插座")){
 //                iv_device_icon.setImageResource(R.mipmap.home_cz);

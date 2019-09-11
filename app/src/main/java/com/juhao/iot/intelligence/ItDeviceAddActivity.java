@@ -71,7 +71,7 @@ public class ItDeviceAddActivity extends BaseActivity {
         };
         lv_devices.setAdapter(adapter);
         devicesBeans = new ArrayList<>();
-        devicesBeans.add(new DevicesBean("开关","","1"));
+        devicesBeans.add(new DevicesBean(getString(R.string.str_kaiguan),"","1"));
         devicesBeans.add(new DevicesBean("照明","","2"));
         adapter.replaceAll(devicesBeans);
         OauthServiceImpl oauthService=new OauthServiceImpl();

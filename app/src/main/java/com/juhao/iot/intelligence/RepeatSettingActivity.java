@@ -65,13 +65,13 @@ public class RepeatSettingActivity extends BaseActivity {
         }
         lv_day.setAdapter(adapter);
         List<String> days=new ArrayList<>();
-        days.add("星期一");
-        days.add("星期二");
-        days.add("星期三");
-        days.add("星期四");
-        days.add("星期五");
-        days.add("星期六");
-        days.add("星期天");
+        days.add(getString(R.string.str_mon));
+        days.add(getString(R.string.str_tue));
+        days.add(getString(R.string.str_wed));
+        days.add(getString(R.string.str_thurs));
+        days.add(getString(R.string.str_fri));
+        days.add(getString(R.string.str_sat));
+        days.add(getString(R.string.str_sun));
         adapter.replaceAll(days);
 
         lv_day.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -250,10 +250,10 @@ public class DeviceShareActivity extends BaseActivity implements View.OnClickLis
                         }
                     }
                     if(!atLeastOne){
-                        MyToast.show(this,"请选择一个要共享的设备");
+                        MyToast.show(this,getString(R.string.str_select_one_devices_to_share));
                         return;
                     }
-                    tv_choose.setText("选择");
+                    tv_choose.setText(getString(R.string.str_choose));
                     Intent intent=new Intent(this,DeviceShareAddActivity.class);
                     intent.putExtra(Constance.data,accountDevDTOS.get(currentP));
                     startActivity(intent);

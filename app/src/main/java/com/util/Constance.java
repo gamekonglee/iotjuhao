@@ -11,6 +11,7 @@ public class Constance {
     public static final String JUGAO_GOODS = "juhao_goods";
     public static final String ACCOUNT_CONFLICT_INT = "ACCOUNT_CONFLICT_INT";
     public static final int REQUEST_CODE = 400;
+    public static final String BLUETOOTH_LIGHT_COUNT = "BLUETOOTH_LIGHT_COUNT";
     public static String OK="0";
 
     public static String USERCODE = "USERCODE";
@@ -520,6 +521,8 @@ public class Constance {
     public static String count_down_json="count_down_json";
     public static String LightSwitch="LightSwitch";
     public static String actions="actions";
+    public static String bluetooth="bluetooth";
+    public static String isbluetooth="isbluetooth";
 /*
             {
     {

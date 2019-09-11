@@ -23,7 +23,7 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_scene"
-                    android:text="场景"
+                    android:text="@string/str_scene"
                     android:textSize="17sp"
                     android:textColor="#252525"
                     android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tv_auto"
-                    android:text="自动化"
+                    android:text="@string/str_auto"
                     android:textSize="17sp"
                     android:textColor="#252525"
                     android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
             android:layout_width="113dp"
             android:layout_height="107dp" />
         <TextView
-            android:text="一键控制多设备，或通过智能音响语音控制"
+            android:text="@string/str_add_scene"
             android:textColor="#999999"
             android:textSize="14sp"
             android:layout_marginTop="15dp"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/btn_add_device"
-            android:text="添加设备"
+            android:text="@string/str_add_device"
             android:textSize="13sp"
             android:textColor="#666666"
             android:layout_marginTop="30dp"

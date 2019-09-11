@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/tv_share_add"
         android:gravity="center"
-        android:text="添加共享"
+        android:text="@string/str_add_share"
         android:textSize="14sp"
         android:textColor="#fa4b00"
         android:background="#ffffff"

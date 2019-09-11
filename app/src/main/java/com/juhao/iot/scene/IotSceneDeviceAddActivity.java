@@ -146,7 +146,7 @@ public class IotSceneDeviceAddActivity extends BaseActivity {
                 int resId=R.mipmap.home_kg;
                 if(item.getName().contains("插座")){
                     resId=R.mipmap.home_cz;
-                }else if(item.getName().contains("开关")){
+                }else if(item.getName().contains(getString(R.string.str_kaiguan))){
                     resId=R.mipmap.home_kg;
                 }else if(item.getName().contains("灯")){
                     resId=R.mipmap.home_zm;

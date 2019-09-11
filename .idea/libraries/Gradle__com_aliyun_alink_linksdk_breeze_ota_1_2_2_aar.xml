@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.alink.linksdk:breeze-ota:1.2.2@aar">
     <ANNOTATIONS>
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/a0dcd0c575f094e53712afa99feb6b2d/annotations.zip!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f4db44a9a2fe7b0c38d433419d7f74fc/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/a0dcd0c575f094e53712afa99feb6b2d/res" />
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/a0dcd0c575f094e53712afa99feb6b2d/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f4db44a9a2fe7b0c38d433419d7f74fc/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/f4db44a9a2fe7b0c38d433419d7f74fc/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

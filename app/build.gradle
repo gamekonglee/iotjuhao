@@ -133,5 +133,6 @@ dependencies {
     implementation files('libs/universalimageloader.jar')
     implementation(name: 'AkHttp', ext: 'aar')
     implementation files('libs/BaiduLBS_Android.jar')
+    implementation 'com.yanzhenjie:permission:1.1.0'
 
 }

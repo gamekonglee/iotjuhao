@@ -52,7 +52,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_turn"
-            android:text="开关"
+            android:text="@string/str_kaiguan"
             android:textSize="11sp"
             android:textColor="#ffffff"
             android:gravity="center"

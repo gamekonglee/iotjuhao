@@ -28,14 +28,14 @@
             android:layout_width="102dp"
             android:layout_height="132dp" />
         <TextView
-            android:text="您暂时没有设备"
+            android:text="@string/str_have_no_devices"
             android:textSize="16sp"
             android:textColor="#999999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/btn_add_device"
-            android:text="添加设备"
+            android:text="@string/str_add_device"
             android:textSize="13sp"
             android:textColor="#666666"
             android:layout_marginTop="30dp"

@@ -42,6 +42,7 @@ import com.aliyun.alink.linksdk.tmp.device.panel.PanelDevice;
 import com.aliyun.alink.linksdk.tmp.device.panel.listener.IPanelCallback;
 import com.aliyun.alink.linksdk.tmp.listener.IDevListener;
 import com.aliyun.alink.linksdk.tmp.utils.ErrorInfo;
+import com.aliyun.iot.aep.component.router.Router;
 import com.aliyun.iot.aep.sdk.apiclient.IoTAPIClient;
 import com.aliyun.iot.aep.sdk.apiclient.IoTAPIClientFactory;
 import com.aliyun.iot.aep.sdk.apiclient.callback.IoTCallback;
@@ -69,6 +70,7 @@ import com.juhao.iot.intelligence.DevicesControlActivity;
 import com.net.ApiClient;
 import com.util.Constance;
 import com.util.LogUtils;
+import com.util.MyShare;
 import com.view.MyToast;
 import com.view.PMSwipeRefreshLayout;
 import com.view.TextViewPlus;
@@ -133,7 +135,11 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
     protected void initViewData() {
 
     }
-
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.frag_it_main_home,null);
+    }
     @Override
     protected void initView() {
         tabs = getView().findViewById(R.id.tabs);
@@ -174,7 +180,7 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                 });
                 lv_home_mates.setAdapter(adapter);
                 List<String> homeMate=new ArrayList<>();
-                homeMate.add("我的家");
+                homeMate.add(getString(R.string.str_my_home));
                 adapter.replaceAll(homeMate);
             }
         });
@@ -256,19 +262,15 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
 
     @Override
     protected void initData() {
-        titles = new String[]{"所有设备","客厅"};
+        titles = new String[]{getString(R.string.str_devices_all),getString(R.string.str_keting)};
     }
     private Bundle mBundle = new Bundle();
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_it_main_home,null);
-    }
+
 
     @Override
     public void onClick(View v) {
         if(status!=1){
-            MyToast.show(getActivity(),"该设备处于离线状态");
+            MyToast.show(getActivity(),getString(R.string.str_device_offline));
             return;
         }
         switch (v.getId()){
@@ -332,14 +334,14 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                 @Override
                 protected void convert(BaseAdapterHelper helper, AccountDevDTO item) {
                     helper.setText(R.id.tv_name,item.getName());
-                    helper.setText(R.id.tv_scene,"客厅");
+                    helper.setText(R.id.tv_scene,getString(R.string.str_keting));
                     helper.setText(R.id.tv_status,item.getStatus());
                     int resId=R.mipmap.home_kg;
-                    if(item.getName().contains("插座")){
+                    if(item.getName().contains(getString(R.string.str_socket))){
                         resId=R.mipmap.home_cz;
-                    }else if(item.getName().contains("开关")){
+                    }else if(item.getName().contains(getString(R.string.str_kaiguan))){
                         resId=R.mipmap.home_kg;
-                    }else if(item.getName().contains("灯")){
+                    }else if(item.getName().contains(getString(R.string.str_light))){
                         resId=R.mipmap.home_zm;
                     }
                     helper.setImageResource(R.id.iv_img,resId);
@@ -375,22 +377,36 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                     }
                     intent.putExtra(Constance.iotId,accountDevDTOS.get(position).getIotId());
                     String type=Constance.night;
+                    boolean isBlueTooth=false;
+                    if(accountDevDTOS.get(position).getName().contains("蓝牙")){
+                        isBlueTooth=true;
+                    }else {
                     if(accountDevDTOS.get(position).getName().contains("开关")){
                         type=Constance.nightswitch;
                     }else if(accountDevDTOS.get(position).getName().contains("插座")){
                         type=Constance.socket;
                     }else if(accountDevDTOS.get(position).getName().contains("锁")){
-                        type=Constance.lock;}
-                    Log.e("type",type);
+                        type=Constance.lock;
+                        }else if(accountDevDTOS.get(position).getName().contains("摄像头")){
+
+                    }
+                    }
+                    String code = "link://router/"+accountDevDTOS.get(position).getProductKey();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("iotId", accountDevDTOS.get(position).getIotId());
+                    Router.getInstance().toUrlForResult(getActivity(), code, 1,bundle);
+
+                 /*   Log.e("type",type);
                     intent.putExtra(Constance.type,type);
-                    startActivity(intent);
+                    intent.putExtra(Constance.isbluetooth,isBlueTooth);
+                    startActivity(intent);*/
 
                 }
             });
             lv_it.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                    UIUtils.showSingleWordDialog(getActivity(), "确定要解绑此设备吗？", new View.OnClickListener() {
+                    UIUtils.showSingleWordDialog(getActivity(), getString(R.string.str_unbind_device), new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Map<String, Object> maps = new HashMap<>();
@@ -442,6 +458,7 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
             container.removeView((View) object);
         }
     }
+
 
     private void listByAccount(){
         accountDevDTOS = new ArrayList<>();
@@ -542,11 +559,20 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                         }
                         for(int i=0;i<accountDevDTOS.size();i++){
                             for(int j=0;j<accountDevDTOS.size();j++){
-                            if(i!=j&&accountDevDTOS.get(i).getIotId().equals(accountDevDTOS.get(j).getIotId())){
+                            if(i!=j&&accountDevDTOS.get(i).getIotId().equals(accountDevDTOS.get(j).getIotId())||accountDevDTOS.get(j).getName().contains("蓝牙")){
                                 accountDevDTOS.remove(j);
                                 if(j!=0)j--;
                             }
                             }
+                        }
+                        int bluetoot_light_count=MyShare.get(getActivity()).getInt(Constance.BLUETOOTH_LIGHT_COUNT);
+                        if(bluetoot_light_count>0){
+                            AccountDevDTO accountDevDTO=new AccountDevDTO();
+                            accountDevDTO.setName(getString(R.string.str_blue_light));
+                            accountDevDTO.setDeviceName(getString(R.string.str_blue_light));
+                            accountDevDTO.setIotId("0");
+                            accountDevDTO.setProductKey("aaa123");
+                            accountDevDTOS.add(accountDevDTO);
                         }
 
                         mHandler.sendEmptyMessage(0);
@@ -747,9 +773,9 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                     type = jsonObject.getString("netType");
                 }
                 device.put("type", type);
-                String statusStr = "离线";
+                String statusStr = getString(R.string.str_offline);
                 if (1 == jsonObject.getInt("status")){
-                    statusStr = "在线";
+                    statusStr = getString(R.string.str_online);
                 }
                 device.put("status", statusStr);
                 device.put("productKey", jsonObject.getString("productKey"));
@@ -787,7 +813,8 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                 iotId = "";
                 if(accountDevDTOS==null||accountDevDTOS.size()==0)return;
                 for(int i=0;i<accountDevDTOS.size();i++){
-                    if(accountDevDTOS.get(i).getName().contains("灯")){
+                    if(accountDevDTOS.get(i).getName().contains("灯")||
+                            accountDevDTOS.get(i).getName().contains("摄像头")){
                         iotId =accountDevDTOS.get(i).getIotId();
                         break;
                     }
@@ -832,7 +859,7 @@ public class ItHomeMainFragment extends BaseFragment implements View.OnClickList
                     }
                 });
             }else if(msg.what==3){
-                MyToast.show(getActivity(),"设置成功");
+                MyToast.show(getActivity(),getString(R.string.str_setting_success));
             }
         }
     };

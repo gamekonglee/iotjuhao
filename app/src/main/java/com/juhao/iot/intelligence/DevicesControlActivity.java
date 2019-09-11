@@ -1,10 +1,13 @@
 package com.juhao.iot.intelligence;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,8 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
 import com.BaseActivity;
 import com.aliyun.alink.linksdk.tmp.TmpSdk;
@@ -30,7 +35,12 @@ import com.aliyun.iot.aep.sdk.apiclient.callback.IoTResponse;
 import com.aliyun.iot.aep.sdk.apiclient.request.IoTRequest;
 import com.aliyun.iot.aep.sdk.apiclient.request.IoTRequestBuilder;
 import com.bean.CountDownBean;
+import com.example.yzz.sodemo.BluetoothUtil;
+import com.example.yzz.sodemo.CHexConver;
+import com.example.yzz.sodemo.DeviceUtil;
+import com.example.yzz.sodemo.JniControl;
 import com.google.gson.Gson;
+import com.juhao.iot.SplashActivity;
 import com.net.ApiClient;
 import com.util.Constance;
 import com.util.LogUtils;
@@ -53,6 +63,7 @@ import okhttp3.Response;
 
 public class DevicesControlActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final int REQUEST_PHONE_STATE = 300;
     private TextView tv_turn;
     private String iotId;
     private boolean isOpen;
@@ -89,6 +100,10 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
     private int status;
     private LinearLayout ll_light;
     private int intColorT;
+    private boolean isbluetooth;
+    private BluetoothUtil mBluetoothUtil;
+    private String uuid;
+    private int group_addr;
 
     @Override
     protected void InitDataView() {
@@ -150,9 +165,26 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
 
         iotId = getIntent().getStringExtra(Constance.iotId);
         type = getIntent().getStringExtra(Constance.type);
+        isbluetooth = getIntent().getBooleanExtra(Constance.isbluetooth,false);
         if(type.equals(Constance.night)){
+            if(isbluetooth) {
+                tv_countdown.setVisibility(View.GONE);
+                init();
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            toast("需要动态获取权限");
+                    ActivityCompat.requestPermissions(DevicesControlActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_PHONE_STATE);
+                }else{
+//            toast("不需要动态获取权限");
+                    uuid = DeviceUtil.getUUID(this);
+                group_addr = DeviceUtil.getMasterControlAddr(uuid);
+                lamp_setup(1);
+                }
+//                lamp_power_on_off(1, false);
+            }else {
+                tv_countdown.setVisibility(View.VISIBLE);
+            }
             identify = "LightSwitch";
-            tv_title.setText("智能白灯光");
+            tv_title.setText(getString(R.string.str_Intelligent_white_light));
             fl_bg.setBackgroundResource(R.mipmap.bg_night_default);
             tv_status.setVisibility(View.GONE);
             tv_tips.setVisibility(View.VISIBLE);
@@ -162,7 +194,7 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
             ll_light.setVisibility(View.VISIBLE);
         }else if(type.equals(Constance.socket)){
             identify="PowerSwitch";
-            tv_title.setText("智能插座");
+            tv_title.setText(getString(R.string.str_Intelligent_socket));
             fl_bg.setBackgroundResource(R.mipmap.bg_socket);
             tv_status.setVisibility(View.VISIBLE);
             iv_control.setImageResource(R.mipmap.page_socket_default);
@@ -172,7 +204,7 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
             ll_light.setVisibility(View.VISIBLE);
         }else if(type.equals(Constance.nightswitch)){
             identify="PowerSwitch";
-            tv_title.setText("智能开关");
+            tv_title.setText(getString(R.string.str_Intelligent_switch));
             fl_bg.setBackgroundResource(R.mipmap.bg_socket);
             tv_status.setVisibility(View.GONE);
             iv_control.setImageResource(R.mipmap.page_socket_default);
@@ -186,9 +218,9 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
             fl_bg.setBackgroundColor(getResources().getColor(R.color.color_kg));
         }else if(type.equals(Constance.lock)){
             identify="LockState";
-            tv_title.setText("智能门锁");
-
+            tv_title.setText(getString(R.string.str_Intelligent_lock));
         }
+
         initTmp();
         final PanelDevice panelDevice = new PanelDevice(iotId);
         panelDevice.init(this, new IPanelCallback() {
@@ -226,12 +258,18 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
                     Log.e("colorT",colorT+"");
                     intColorT = ((int)((colorT+1000)/500))*500;
                     if(intColorT<1000)intColorT=1000;
-                    Log.e("changeNight",intColorT+"");
-                    changeNight("ColorTemperature", intColorT);
                     float alpha=1f*progress/6000.0f;
                     if(alpha<0.15f){
                         alpha=0.15f;
                     }
+
+                    Log.e("changeNight",intColorT+"");
+                    if(isbluetooth){
+                        lamp_dimming(1,Integer.toHexString((int) (alpha*255)),Integer.toHexString((int) (alpha*255)));
+                    }else {
+                    changeNight("ColorTemperature", intColorT);
+                    }
+
                     Log.e("alpha",""+alpha);
                     iv_control.setAlpha(alpha);
 //                    iv_control.setImageAlpha(progress/7000);
@@ -249,6 +287,114 @@ public class DevicesControlActivity extends BaseActivity implements View.OnClick
             }
         });
     }
+
+    private void init() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mBluetoothUtil = BluetoothUtil.getIntstance(this);
+            if (mBluetoothUtil != null) {
+                sendBleData();
+            } else {
+                Toast.makeText(this, getString(R.string.str_init_exception), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, getString(R.string.str_version_sdk_old), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    int num = 0;
+    boolean istrue = true;
+    byte[] aByte = new byte[25];
+    //发送蓝牙数据包
+    public void sendBleData() {
+        if (mBluetoothUtil != null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (istrue) {
+                        Log.e("run: ", "-------------");
+                        mBluetoothUtil.advertising(aByte);
+                        try {
+                            num++;
+                            Thread.sleep(300);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        if (num == 10) {
+                            num = 0;
+                            istrue = false;
+                            mBluetoothUtil.stopAdvertising();
+                        }
+                    }
+                }
+            }).start();
+        }
+    }
+
+    //对码
+    public void lamp_setup(int group_index) {
+        JniControl.buildpayload(0x28, group_addr, group_index, group_addr >> 8, group_addr, getCount(), 0x81, 0x0, (int) (Math.random() * 16), aByte);
+        Log.e("---对码---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        istrue = true;
+        sendBleData();
+    }
+
+    //清码
+    public void lamp_clear_code() {
+        JniControl.buildpayload(0x45, 0xFFFE, 0x0000, 0x01, 0x00, getCount(), 0x81, 0x00, (int) (Math.random() * 16), aByte);
+        Log.e("---清码---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        istrue = true;
+        sendBleData();
+    }
+
+    //开灯/关灯
+    public void lamp_power_on_off(int group_index, boolean on) {
+        if (on) {
+            JniControl.buildpayload(0x10, group_addr, group_index, 0x00, 0x00, getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+            Log.e("---开灯---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        } else {
+            JniControl.buildpayload(0x11, group_addr, group_index, 0x00, 0x00, getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+            Log.e("---关灯---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        }
+        istrue = true;
+        sendBleData();
+    }
+
+
+    //夜灯
+    public void lamp_night_light(int group_index) {
+        JniControl.buildpayload(0x23, group_addr, group_index, 0x00, 0x00, getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+        Log.e("---夜灯---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        istrue = true;
+        sendBleData();
+    }
+
+    //辅灯开关
+    public void lamp_aida_on_off(int group_index, boolean on) {
+        if (on) {
+            JniControl.buildpayload(0x12, group_addr, group_index, 0x00, 0x00, getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+            Log.e("---辅灯开---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        } else {
+            JniControl.buildpayload(0x13, group_addr, group_index, 0x00, 0x00, getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+            Log.e("---辅灯关---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        }
+        istrue = true;
+        sendBleData();
+    }
+
+    //调光
+    public void lamp_dimming(int group_index, String w, String y) {
+        JniControl.buildpayload(0x21, group_addr, group_index, Integer.parseInt(w,16), Integer.parseInt(y,16), getCount(), 0x00, 0x00, (int) (Math.random() * 16), aByte);
+        Log.e("---调光---- ", CHexConver.byte2HexStr(aByte, aByte.length));
+        istrue = true;
+        sendBleData();
+    }
+    int count = 0;
+    private int getCount() {
+        count++;
+        return count;
+    }
+
 
     private void turnOnOrOff(String identify, Object value) {
         Map<String, Object> maps = new HashMap<>();
@@ -433,11 +579,11 @@ Handler handler=new Handler(){
     public void refreshUI(){
         if(type.equals(Constance.socket)){
             if(isOpen){
-                tv_status.setText("插座已开启");
+                tv_status.setText(getString(R.string.str_socket_open));
                 iv_control.setImageResource(R.mipmap.page_socket_selected);
 
             }else {
-                tv_status.setText("插座已关闭");
+                tv_status.setText(getString(R.string.str_socket_close));
                 iv_control.setImageResource(R.mipmap.page_socket_default);
             }
         }else if(type.equals(Constance.night)){
@@ -452,9 +598,9 @@ Handler handler=new Handler(){
             }
         }else if(type.equals(Constance.nightswitch)){
             if(isOpen1||isOpen2||isOpen3||isOpen4){
-                tv_kg_tips.setText("电源已开启");
+                tv_kg_tips.setText(getString(R.string.str_light_open));
             }else {
-                tv_kg_tips.setText("电源已关闭");
+                tv_kg_tips.setText(getString(R.string.str_light_close));
             }
             if(isOpen1){
                 ll_kg_1.setAlpha(1f);
@@ -530,6 +676,9 @@ Handler handler=new Handler(){
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if(isbluetooth){
+            lamp_clear_code();
+        }
     }
 
     @Override
@@ -554,7 +703,13 @@ Handler handler=new Handler(){
                 if(!isOpen){
                     power=1;
                 }
+                if(isbluetooth){
+                    isOpen=!isOpen;
+                    lamp_power_on_off(1, power==1?true:false);
+                    iv_control.setImageResource(power!=1?R.mipmap.page_lamp_default:R.mipmap.page_dark);
+                }else {
                 turnOnOrOff(identify,power);
+                }
                 break;
             case R.id.ll_kg_1:
                 if(status !=1){
@@ -674,7 +829,7 @@ Handler handler=new Handler(){
                     try {
                         JSONObject jsonObject1=new JSONObject(response);
                         if(jsonObject1.getBoolean(Constance.success)){
-                            MyToast.show(DevicesControlActivity.this,"添加成功");
+                            MyToast.show(DevicesControlActivity.this,getString(R.string.str_add_success));
                             Intent intent=new Intent(DevicesControlActivity.this,CountDownListActivity.class);
                             intent.putExtra(Constance.iotId,iotId);
                             startActivity(intent);
@@ -704,7 +859,7 @@ Handler handler=new Handler(){
                         try {
                             JSONObject jsonObject1=new JSONObject(response);
                             if(jsonObject1.getBoolean(Constance.success)){
-                                MyToast.show(DevicesControlActivity.this,"修改成功");
+                                MyToast.show(DevicesControlActivity.this,getString(R.string.str_edit_success));
                                 Intent intent=new Intent(DevicesControlActivity.this,CountDownListActivity.class);
                                 intent.putExtra(Constance.iotId,iotId);
                                 startActivity(intent);
@@ -724,7 +879,7 @@ Handler handler=new Handler(){
             @Override
             public void run() {
                 if(DevicesControlActivity.this!=null&&!DevicesControlActivity.this.isFinishing()){
-                MyToast.show(DevicesControlActivity.this,"该设备处于离线状态");
+                MyToast.show(DevicesControlActivity.this,getString(R.string.str_device_offline));
                 }
             }
         });

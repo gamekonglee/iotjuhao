@@ -32,7 +32,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp" />
         <TextView
-            android:text="点击设置昵称"
+            android:text=""
             android:textSize="14sp"
             android:textColor="#ffffff"
             android:layout_toRightOf="@+id/iv_head"
@@ -41,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tv_name"
             android:text="86-139****3545"
             android:textColor="#ffffff"
             android:textSize="12sp"
@@ -68,7 +69,7 @@
         android:background="@drawable/bg_corner_white_8_top">
             <com.view.TextViewPlus
                 android:id="@+id/tv_component"
-                android:text="小组件"
+                android:text="@string/str_small_component"
                 android:drawableLeft="@mipmap/icon_xzj"
                 style="@style/tv_mine"/>
 
@@ -78,22 +79,22 @@
             android:layout_height="20dp"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_notice"
-            android:text="消息中心"
+            android:text="@string/str_notice"
             android:drawableLeft="@mipmap/icon_xx"
             style="@style/tv_mine"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_share"
-            android:text="共享"
+            android:text="@string/str_share"
             android:drawableLeft="@mipmap/icon_share"
             style="@style/tv_mine"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_3th"
-            android:text="第三方服务"
+            android:text="@string/str_thirth"
             android:drawableLeft="@mipmap/icon_service"
             style="@style/tv_mine"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_suggestion"
-            android:text="意见反馈"
+            android:text="@string/str_suggestion"
             android:drawableLeft="@mipmap/icon_yjfk"
             style="@style/tv_mine"/>
         <View
@@ -102,12 +103,12 @@
             android:layout_height="20dp"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_setting"
-            android:text="设置"
+            android:text="@string/str_setting"
             android:drawableLeft="@mipmap/icon_sz"
             style="@style/tv_mine"/>
         <com.view.TextViewPlus
             android:id="@+id/tv_about"
-            android:text="关于"
+            android:text="@string/about"
             android:drawableLeft="@mipmap/icon_about"
             style="@style/tv_mine"/>
         <View

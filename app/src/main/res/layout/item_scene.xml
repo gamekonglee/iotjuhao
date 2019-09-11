@@ -9,7 +9,7 @@
         android:layout_height="200dp" />
     <TextView
         android:id="@+id/tv_name"
-        android:text="钜豪智能"
+        android:text=""
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_marginTop="40dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tv_doit"
-        android:text="执行"
+        android:text="@string/str_excute"
         android:textColor="#252525"
         android:textSize="15sp"
         android:background="@drawable/bg_corner_f8f8f8_15"

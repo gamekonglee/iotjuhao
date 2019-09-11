@@ -155,7 +155,7 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
             countDownBean = new Gson().fromJson(getIntent().getStringExtra(Constance.count_down_json),CountDownBean.class);
             isEdit = true;
             days="["+countDownBean.getWeeks()+"]";
-            tv_count_down_add.setText("编辑定时");
+            tv_count_down_add.setText(getString(R.string.str_edit_countdown));
             String hour=countDownBean.getHour()+"";
             String minute=countDownBean.getMinute()+"";
             if(hour.length()<2){
@@ -166,62 +166,62 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
             }
             tv_current_time.setText(hour+":"+minute);
             String[] weeks=countDownBean.getWeeks().split(",");
-            String str="星期";
+            String str=getString(R.string.str_week);
             if(weeks.length>0){
                 for(int i=0;i<weeks.length;i++){
                     if(weeks[i].equals("0")){
-                        str="仅限一次,";
+                        str=getString(R.string.str_onetime)+",";
                         break;
                     }
                     if(weeks.length==7){
-                        str="每天,";
+                        str=getString(R.string.str_everyday)+",";
                         break;
                     }
                     if(weeks[i].equals("1")){
-                        str+="一，";
+                        str+=getString(R.string.str_monday)+"，";
                     }
                     if(weeks[i].equals("2")){
-                        str+="二，";
+                        str+=getString(R.string.str_tuesday)+"，";
                     }
                     if(weeks[i].equals("3")){
-                        str+="三，";
+                        str+=getString(R.string.str_wednesday)+"，";
                     }
                     if(weeks[i].equals("4")){
-                        str+="四，";
+                        str+=getString(R.string.str_thursday)+"，";
                     }
                     if(weeks[i].equals("5")){
-                        str+="五，";
+                        str+=getString(R.string.str_friday)+"，";
                     }
                     if(weeks[i].equals("6")){
-                        str+="六，";
+                        str+=getString(R.string.str_saturday)+"，";
                     }
                     if(weeks[i].equals("7")){
-                        str+="日，";
+                        str+=getString(R.string.str_sunday)+"，";
                     }
                 }
             }else {
-                str="仅限一次,";
+                str=getString(R.string.str_onetime)+",";
             }
             tv_current_repeat.setText(str.substring(0,str.length()-1));
             try {
                 JSONObject items=new JSONObject(countDownBean.getItems());
                 if(type.equals(Constance.socket)){
                     PowerSwitch=items.getInt(Constance.PowerSwitch);
-                    tv_current_switch.setText(PowerSwitch==1?"开启":"关闭");
+                    tv_current_switch.setText(PowerSwitch==1?getString(R.string.str_open):getString(R.string.str_close));
                 }else if(type.equals(Constance.night)){
                     LightSwitch=items.getInt(Constance.LightSwitch);
                     ColorTemperature=items.getInt(Constance.ColorTemperature);
-                    tv_current_switch.setText(LightSwitch==1?"开启":"关闭");
+                    tv_current_switch.setText(LightSwitch==1?getString(R.string.str_open):getString(R.string.str_close));
                     seekBar.setProgress(ColorTemperature-1000);
                 }else if(type.equals(Constance.nightswitch)){
                     PowerSwitch_1=items.getInt(Constance.PowerSwitch_1);
                     PowerSwitch_2=items.getInt(Constance.PowerSwitch_2);
                     PowerSwitch_3=items.getInt(Constance.PowerSwitch_3);
                     PowerSwitch_4=items.getInt(Constance.PowerSwitch_4);
-                    tv_current_switch_1.setText(PowerSwitch_1==1?"开启":"关闭");
-                    tv_current_switch_2.setText(PowerSwitch_2==1?"开启":"关闭");
-                    tv_current_switch_3.setText(PowerSwitch_3==1?"开启":"关闭");
-                    tv_current_switch_4.setText(PowerSwitch_4==1?"开启":"关闭");
+                    tv_current_switch_1.setText(PowerSwitch_1==1?getString(R.string.str_open):getString(R.string.str_close));
+                    tv_current_switch_2.setText(PowerSwitch_2==1?getString(R.string.str_open):getString(R.string.str_close));
+                    tv_current_switch_3.setText(PowerSwitch_3==1?getString(R.string.str_open):getString(R.string.str_close));
+                    tv_current_switch_4.setText(PowerSwitch_4==1?getString(R.string.str_open):getString(R.string.str_close));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -242,28 +242,28 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
                 dialog.dismiss();
                 if(type.equals(Constance.socket)){
                     PowerSwitch=0;
-                    tv_current_switch.setText("关闭");
+                    tv_current_switch.setText(getString(R.string.str_close));
                 }else if(type.equals(Constance.night)){
                     LightSwitch=0;
-                    tv_current_switch.setText("关闭");
+                    tv_current_switch.setText(getString(R.string.str_close));
                     ll_seek.setVisibility(View.GONE);
                 }else if(type.equals(Constance.nightswitch)){
                     switch (position){
                         case 1:
                             PowerSwitch_1=0;
-                            tv_current_switch_1.setText("关闭");
+                            tv_current_switch_1.setText(getString(R.string.str_close));
                             break;
                         case 2:
                             PowerSwitch_2=0;
-                            tv_current_switch_2.setText("关闭");
+                            tv_current_switch_2.setText(getString(R.string.str_close));
                             break;
                         case 3:
                             PowerSwitch_3=0;
-                            tv_current_switch_3.setText("关闭");
+                            tv_current_switch_3.setText(getString(R.string.str_close));
                             break;
                         case 4:
                             PowerSwitch_4=0;
-                            tv_current_switch_4.setText("关闭");
+                            tv_current_switch_4.setText(getString(R.string.str_close));
                             break;
                     }
                 }
@@ -276,28 +276,28 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
                 dialog.dismiss();
                 if(type.equals(Constance.socket)){
                     PowerSwitch=1;
-                    tv_current_switch.setText("开启");
+                    tv_current_switch.setText(getString(R.string.str_open));
                 }else if(type.equals(Constance.night)){
                     LightSwitch=1;
-                    tv_current_switch.setText("开启");
+                    tv_current_switch.setText(getString(R.string.str_open));
                     ll_seek.setVisibility(View.GONE);
                 }else if(type.equals(Constance.nightswitch)){
                     switch (position){
                         case 1:
                             PowerSwitch_1=1;
-                            tv_current_switch_1.setText("开启");
+                            tv_current_switch_1.setText(getString(R.string.str_open));
                             break;
                         case 2:
                             PowerSwitch_2=1;
-                            tv_current_switch_2.setText("开启");
+                            tv_current_switch_2.setText(getString(R.string.str_open));
                             break;
                         case 3:
                             PowerSwitch_3=1;
-                            tv_current_switch_3.setText("开启");
+                            tv_current_switch_3.setText(getString(R.string.str_open));
                             break;
                         case 4:
                             PowerSwitch_4=1;
-                            tv_current_switch_4.setText("开启");
+                            tv_current_switch_4.setText(getString(R.string.str_open));
                             break;
                     }
                 }
@@ -357,31 +357,31 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
             if(data!=null){
                 days = data.getStringExtra(Constance.days);
                 if(days.contains("0")){
-                    tv_current_repeat.setText("仅限一次");
+                    tv_current_repeat.setText(getString(R.string.str_onetime));
                 }else {
                     String str="";
                     if(days.contains("1")){
-                        str+="一,";
+                        str+=getString(R.string.str_monday)+"，";
                     }
                     if(days.contains("2")){
-                        str+="二,";
+                        str+=getString(R.string.str_tuesday)+"，";
                     }
                     if(days.contains("3")){
-                        str+="三,";
+                        str+=getString(R.string.str_wednesday)+"，";
                     }
                     if(days.contains("4")){
-                        str+="四,";
+                        str+=getString(R.string.str_thursday)+"，";
                     }
                     if(days.contains("5")){
-                        str+="五,";
+                        str+=getString(R.string.str_friday)+"，";
                     }
                     if(days.contains("6")){
-                        str+="六,";
+                        str+=getString(R.string.str_saturday)+"，";
                     }
                     if(days.contains("7")){
-                        str+="日,";
+                        str+=getString(R.string.str_sunday)+"，";
                     }
-                    str="每星期"+str;
+                    str=getString(R.string.str_everyweek)+str;
                     str=str.substring(0,str.length()-1);
                     tv_current_repeat.setText(str);
                 }
@@ -479,7 +479,7 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
                             try {
                                 JSONObject jsonObject1=new JSONObject(response);
                                 if(jsonObject1.getBoolean(Constance.success)){
-                                    MyToast.show(CountDownAddActivity.this,"添加成功");
+                                    MyToast.show(CountDownAddActivity.this,getString(R.string.str_add_success));
                                     finish();
                                 }
                             } catch (JSONException e) {
@@ -507,7 +507,7 @@ public class CountDownAddActivity extends BaseActivity implements View.OnClickLi
                             try {
                                 JSONObject jsonObject1=new JSONObject(response);
                                 if(jsonObject1.getBoolean(Constance.success)){
-                                    MyToast.show(CountDownAddActivity.this,"修改成功");
+                                    MyToast.show(CountDownAddActivity.this,getString(R.string.str_edit_success));
                                     finish();
                                 }
                             } catch (JSONException e) {

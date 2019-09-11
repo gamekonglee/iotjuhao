@@ -84,45 +84,45 @@ public class CountDownListActivity extends BaseActivity implements  SwipeRefresh
                 if(weeks.length>0){
                     for(int i=0;i<weeks.length;i++){
                         if(weeks[i].equals("0")){
-                            str="仅限一次,";
+                            str=getString(R.string.str_onetime)+",";
                             break;
                         }
                         if(weeks.length==7){
-                            str="每天,";
+                            str=getString(R.string.str_everyday)+",";
                             break;
                         }
                         if(weeks[i].equals("1")){
-                            str+="星期一，";
+                            str+=getString(R.string.str_mon)+"，";
                         }
                         if(weeks[i].equals("2")){
-                            str+="星期二，";
+                            str+=getString(R.string.str_tue)+"，";
                         }
                         if(weeks[i].equals("3")){
-                            str+="星期三，";
+                            str+=getString(R.string.str_wed)+"，";
                         }
                         if(weeks[i].equals("4")){
-                            str+="星期四，";
+                            str+=getString(R.string.str_thurs)+"，";
                         }
                         if(weeks[i].equals("5")){
-                            str+="星期五，";
+                            str+=getString(R.string.str_fri)+"，";
                         }
                         if(weeks[i].equals("6")){
-                            str+="星期六，";
+                            str+=getString(R.string.str_sat)+"，";
                         }
                         if(weeks[i].equals("7")){
-                            str+="星期日，";
+                            str+=getString(R.string.str_sun)+"，";
                         }
                     }
                 }else {
-                    str="仅限一次,";
+                    str=getString(R.string.str_onetime)+",";
                 }
                 helper.setText(R.id.tv_weeks,str.substring(0,str.length()-1));
                 if(item.getStatus()==1){
                     helper.setImageResource(R.id.iv_status,R.mipmap.home_icon_k);
-                    helper.setText(R.id.tv_status,"开关：开启");
+                    helper.setText(R.id.tv_status,getString(R.string.str_switch_open));
                 }else {
                     helper.setImageResource(R.id.iv_status,R.mipmap.home_icon_g);
-                    helper.setText(R.id.tv_status,"开关：关闭");
+                    helper.setText(R.id.tv_status,getString(R.string.str_switch_close));
                 }
                 helper.setOnClickListener(R.id.rl_status, new View.OnClickListener() {
                     @Override
@@ -193,7 +193,7 @@ public class CountDownListActivity extends BaseActivity implements  SwipeRefresh
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                UIUtils.showSingleWordDialog(CountDownListActivity.this, "确定要删除此定时吗？", new View.OnClickListener() {
+                UIUtils.showSingleWordDialog(CountDownListActivity.this, getString(R.string.str_delete_countdown), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ApiClient.IotTimerDelete(countDownBeans.get(position).getPid(),countDownBeans.get(position).getIotid(), new Callback<String>() {
@@ -214,7 +214,7 @@ public class CountDownListActivity extends BaseActivity implements  SwipeRefresh
                                     org.json.JSONObject jsonObject1=new org.json.JSONObject(response);
                                     if(jsonObject1.getBoolean(Constance.success)){
 //                                        MyToast.show(CountDownListActivity.this,"删除成功");
-                                        Toast.makeText(CountDownListActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(CountDownListActivity.this, getString(R.string.str_delete_success), Toast.LENGTH_SHORT).show();
                                         countDownBeans=new ArrayList<>();
                                         listCoundDown();
                                     }

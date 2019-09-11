@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.aliyun.iot.aep.sdk:account:0.0.2.3@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/24053b36939ec054aa8c2136a23e325a/res" />
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/24053b36939ec054aa8c2136a23e325a/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/ddd7ba4194eafc88a15f66ef91104376/res" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/ddd7ba4194eafc88a15f66ef91104376/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

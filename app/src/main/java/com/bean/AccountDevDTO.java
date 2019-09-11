@@ -160,4 +160,7 @@ public class AccountDevDTO implements Serializable {
         this.type = type;
         this.status = status;
     }
+    public AccountDevDTO(){
+
+    }
 }

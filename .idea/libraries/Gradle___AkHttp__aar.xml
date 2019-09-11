@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: :AkHttp:@aar">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/968330f9b0efb1f2763238d2a314ee11/res" />
-      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/968330f9b0efb1f2763238d2a314ee11/jars/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/6c4c4e3ed8bed5387366c8a82998b716/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../gradle-5.1.1-all/gradle-5.1.1/bin/caches/transforms-2/files-2.1/6c4c4e3ed8bed5387366c8a82998b716/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
